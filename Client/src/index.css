@@ -1,0 +1,90 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik+Vinyl&display=swap");
+@import "tailwindcss";
+
+* {
+  transition: all 0.5s linear;
+  font-family: "Montserrat", sans-serif;
+  user-select: none;
+}
+
+.rubik-glitch {
+  font-family: "Rubik Vinyl", system-ui;
+}
+.line::before {
+  content: "";
+  width: 0;
+  border: 0px solid white;
+  position: absolute;
+  bottom: -10%;
+  transition: all 0.5s linear;
+}
+
+.line:hover::before {
+  width: 100%;
+  border: 1px solid white;
+}
+
+.bg {
+  background-color: #000000;
+}
+
+.account-btn:hover.open {
+  display: block;
+}
+
+.love-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50px;
+  background: linear-gradient(45deg, var(--i), var(--j));
+  opacity: 0;
+  transition: 0.5s;
+  z-index: 1;
+}
+
+.love-btn:hover::before {
+  opacity: 1;
+}
+
+.love-btn::after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  width: 100%;
+  height: 100%;
+  border-radius: 60px;
+  background: linear-gradient(45deg, var(--i), var(--j));
+  filter: blur(15px);
+  opacity: 0;
+  transition: 0.5s;
+  z-index: 0;
+}
+
+.love-btn:hover::after {
+  opacity: 0.5;
+}
+
+.love-btn:active {
+  scale: 1.2;
+}
+
+.love-btn:hover {
+  width: 180px;
+  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0);
+}
+
+.scroll {
+  animation: scroll 60s linear infinite;
+}
+
+@keyframes scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.scroll:hover {
+  animation-play-state: paused;
+}
