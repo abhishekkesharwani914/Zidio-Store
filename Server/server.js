@@ -63,7 +63,7 @@ app.use("/user/auth", userRoute);
 app.use("/user", userDataRoute);
 app.use("/cart", cartRoute);
 app.use("/items/:id/reviews", reviewRoute);
-app.use("/", itemsRoute);
+app.use("/shop", itemsRoute);
 
 // Error Handling Route
 // app.use("*", (req, res, next) => {

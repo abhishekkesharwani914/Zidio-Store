@@ -1,4 +1,9 @@
-data = [
+require('dotenv').config();
+const mongoose = require("mongoose");
+const Items = require("../models/itemModel");
+
+
+const initData = [
     // 1
     {
         "title": "Guardians Galaxy Oversized Tee",
@@ -16,8 +21,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://images.meesho.com/images/products/4rtuqa_1.jpg",
-          "https://images.meesho.com/images/products/4rtuqa_2.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725970/Gemini_Generated_Image_pl59p5pl59p5pl59_adnseo.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725970/Gemini_Generated_Image_pl59p5pl59p5pl59_adnseo.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725970/Gemini_Generated_Image_pl59p5pl59p5pl59_adnseo.png"
         ]
       },
 
@@ -38,8 +44,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://images.meesho.com/images/products/3pp7dy_1.jpg",
-          "https://images.meesho.com/images/products/3pp7dy_2.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725963/Gemini_Generated_Image_pl59p6pl59p6pl59_wpyrmb.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725963/Gemini_Generated_Image_pl59p6pl59p6pl59_wpyrmb.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725963/Gemini_Generated_Image_pl59p6pl59p6pl59_wpyrmb.png"
         ]
       },
 
@@ -60,8 +67,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://images.meesho.com/images/products/19q0qf_1.jpg",
-          "https://images.meesho.com/images/products/19q0qf_2.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725962/Gemini_Generated_Image_pl59p7pl59p7pl59_plqqob.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725962/Gemini_Generated_Image_pl59p7pl59p7pl59_plqqob.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725861/Gemini_Generated_Image_k2e1o2k2e1o2k2e1_riwi6p.png",
         ]
       },
 
@@ -82,8 +90,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://m.media-amazon.com/images/I/71+e0bK3VUL._AC_UL1500_.jpg",
-          "https://m.media-amazon.com/images/I/71+e0bK3VUL._AC_UL1500_.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725945/Gemini_Generated_Image_o3l95ko3l95ko3l9_hoc7yq.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725945/Gemini_Generated_Image_o3l95ko3l95ko3l9_hoc7yq.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725945/Gemini_Generated_Image_o3l95ko3l95ko3l9_hoc7yq.png"
         ]
       },
 
@@ -104,8 +113,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://images.meesho.com/images/products/2zbgup_1.jpg",
-          "https://images.meesho.com/images/products/2zbgup_2.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725963/Gemini_Generated_Image_o3l95jo3l95jo3l9_b4pmyk.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725963/Gemini_Generated_Image_o3l95jo3l95jo3l9_b4pmyk.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725963/Gemini_Generated_Image_o3l95jo3l95jo3l9_b4pmyk.png"
         ]
       },
 
@@ -126,7 +136,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://bearmode.in/products/dark-knight-acid-wash-tshirt.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725891/Gemini_Generated_Image_h3y44hh3y44hh3y4_ksagmt.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725891/Gemini_Generated_Image_h3y44hh3y44hh3y4_ksagmt.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725891/Gemini_Generated_Image_h3y44hh3y44hh3y4_ksagmt.png"
         ]
       },
 
@@ -147,7 +159,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://www.teeters.in/images/products/house-stark-polo.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725938/Gemini_Generated_Image_o3l95no3l95no3l9_tcezfz.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725938/Gemini_Generated_Image_o3l95no3l95no3l9_tcezfz.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725938/Gemini_Generated_Image_o3l95no3l95no3l9_tcezfz.png"
         ]
       },
 
@@ -168,7 +182,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://www.flipkart.com/images/products/superman-sleeveless.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725978/Gemini_Generated_Image_h3y44gh3y44gh3y4_gpkie6.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725978/Gemini_Generated_Image_h3y44gh3y44gh3y4_gpkie6.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725978/Gemini_Generated_Image_h3y44gh3y44gh3y4_gpkie6.png"
         ]
       },
 
@@ -189,7 +205,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://www.redwolf.in/images/products/captain-america-long-sleeve.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725927/Gemini_Generated_Image_o3l95oo3l95oo3l9_r4tf12.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725927/Gemini_Generated_Image_o3l95oo3l95oo3l9_r4tf12.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725823/Gemini_Generated_Image_h3y44kh3y44kh3y4_ztxgu4.png"
         ]
       },
 
@@ -210,7 +228,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://www.flipkart.com/images/products/iron-man-henley.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725918/Gemini_Generated_Image_o3l95po3l95po3l9_zqr5vw.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725918/Gemini_Generated_Image_o3l95po3l95po3l9_zqr5vw.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725918/Gemini_Generated_Image_o3l95po3l95po3l9_zqr5vw.png"
         ]
       },
 
@@ -231,7 +251,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://pixisoul.com/images/products/spiderman-hooded.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725914/Gemini_Generated_Image_o3l95ro3l95ro3l9_ox70nq.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725914/Gemini_Generated_Image_o3l95ro3l95ro3l9_ox70nq.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725914/Gemini_Generated_Image_o3l95ro3l95ro3l9_ox70nq.png"
         ]
       },
 
@@ -252,7 +274,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://www.flipkart.com/images/products/wonder-woman-crop.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725807/Gemini_Generated_Image_h3y44mh3y44mh3y4_yotk5q.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725807/Gemini_Generated_Image_h3y44mh3y44mh3y4_yotk5q.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725807/Gemini_Generated_Image_h3y44mh3y44mh3y4_yotk5q.png"
         ]
       },
 
@@ -273,7 +297,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://bearmode.in/products/flash-acid-wash.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725981/Gemini_Generated_Image_x6l628x6l628x6l6_rsarxx.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725981/Gemini_Generated_Image_x6l628x6l628x6l6_rsarxx.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725981/Gemini_Generated_Image_x6l628x6l628x6l6_rsarxx.png"
         ]
       },
 
@@ -294,7 +320,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://www.teeters.in/images/products/green-lantern-solid.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725914/Gemini_Generated_Image_xly96bxly96bxly9_yex49p.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725914/Gemini_Generated_Image_xly96bxly96bxly9_yex49p.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725914/Gemini_Generated_Image_xly96bxly96bxly9_yex49p.png"
         ]
       },
 
@@ -315,7 +343,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://bearmode.in/products/dark-knight-acid-wash-tshirt.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725816/Gemini_Generated_Image_h3y44oh3y44oh3y4_lt2zlw.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725816/Gemini_Generated_Image_h3y44oh3y44oh3y4_lt2zlw.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725816/Gemini_Generated_Image_h3y44oh3y44oh3y4_lt2zlw.png"
         ]
       },
 
@@ -336,7 +366,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://www.teeters.in/images/products/house-stark-polo.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725839/Gemini_Generated_Image_h3y44lh3y44lh3y4_iixbi7.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725839/Gemini_Generated_Image_h3y44lh3y44lh3y4_iixbi7.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725839/Gemini_Generated_Image_h3y44lh3y44lh3y4_iixbi7.png"
         ]
       },
 
@@ -357,7 +389,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://www.flipkart.com/images/products/superman-sleeveless.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725930/Gemini_Generated_Image_o3l95mo3l95mo3l9_j6cztr.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725930/Gemini_Generated_Image_o3l95mo3l95mo3l9_j6cztr.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725930/Gemini_Generated_Image_o3l95mo3l95mo3l9_j6cztr.png"
         ]
       },
 
@@ -378,7 +412,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://www.redwolf.in/images/products/captain-america-long-sleeve.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725927/Gemini_Generated_Image_o3l95oo3l95oo3l9_r4tf12.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725927/Gemini_Generated_Image_o3l95oo3l95oo3l9_r4tf12.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725823/Gemini_Generated_Image_h3y44kh3y44kh3y4_ztxgu4.png"
         ]
       },
 
@@ -399,7 +435,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://www.flipkart.com/images/products/iron-man-henley.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747988907/Gemini_Generated_Image_ez02xeez02xeez02_xdqvce.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747988907/Gemini_Generated_Image_ez02xeez02xeez02_xdqvce.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747988907/Gemini_Generated_Image_ez02xeez02xeez02_xdqvce.png"
         ]
       },
 
@@ -420,7 +458,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://pixisoul.com/images/products/spiderman-hooded.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747988648/Gemini_Generated_Image_jy3nodjy3nodjy3n_qked6g.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747988648/Gemini_Generated_Image_jy3nodjy3nodjy3n_qked6g.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747988648/Gemini_Generated_Image_jy3nodjy3nodjy3n_qked6g.png"
         ]
       },
 
@@ -441,7 +481,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://www.flipkart.com/images/products/wonder-woman-crop.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747988478/Gemini_Generated_Image_xc7uedxc7uedxc7u_zbfshk.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747988437/Gemini_Generated_Image_jpl8yojpl8yojpl8_mfpwmj.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747988459/Gemini_Generated_Image_6q7pnt6q7pnt6q7p_r44n4x.png"
         ]
       },
 
@@ -462,7 +504,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://bearmode.in/products/flash-acid-wash.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725850/Gemini_Generated_Image_h3y44ih3y44ih3y4_cgagbu.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725850/Gemini_Generated_Image_h3y44ih3y44ih3y4_cgagbu.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725850/Gemini_Generated_Image_h3y44ih3y44ih3y4_cgagbu.png"
         ]
       },
 
@@ -483,7 +527,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://www.teeters.in/images/products/green-lantern-solid.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747987938/Gemini_Generated_Image_mreh7dmreh7dmreh_pwohf3.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747987964/Gemini_Generated_Image_tiyybtiyybtiyybt_mbj4fw.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747987953/Gemini_Generated_Image_3t99d43t99d43t99_t3jbwb.png"
         ]
       },
 
@@ -504,7 +550,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://example.com/images/superhero-name-tshirt.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747990101/Gemini_Generated_Image_hz7z5chz7z5chz7z_fsp2je.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747990101/Gemini_Generated_Image_hz7z5chz7z5chz7z_fsp2je.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747990101/Gemini_Generated_Image_hz7z5chz7z5chz7z_fsp2je.png"
         ]
       },
 
@@ -525,7 +573,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://bearmode.in/products/dark-knight-acid-wash-tshirt.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725981/Gemini_Generated_Image_x6l628x6l628x6l6_rsarxx.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725981/Gemini_Generated_Image_x6l628x6l628x6l6_rsarxx.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725981/Gemini_Generated_Image_x6l628x6l628x6l6_rsarxx.png"
         ]
       },
 
@@ -546,7 +596,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://www.teeters.in/images/products/house-stark-polo.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725938/Gemini_Generated_Image_o3l95no3l95no3l9_tcezfz.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725938/Gemini_Generated_Image_o3l95no3l95no3l9_tcezfz.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725938/Gemini_Generated_Image_o3l95no3l95no3l9_tcezfz.png"
         ]
       },
 
@@ -567,7 +619,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://www.flipkart.com/images/products/superman-sleeveless.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725930/Gemini_Generated_Image_o3l95mo3l95mo3l9_j6cztr.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725930/Gemini_Generated_Image_o3l95mo3l95mo3l9_j6cztr.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725930/Gemini_Generated_Image_o3l95mo3l95mo3l9_j6cztr.png"
         ]
       },
 
@@ -588,7 +642,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://www.redwolf.in/images/products/captain-america-long-sleeve.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725927/Gemini_Generated_Image_o3l95oo3l95oo3l9_r4tf12.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725927/Gemini_Generated_Image_o3l95oo3l95oo3l9_r4tf12.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725823/Gemini_Generated_Image_h3y44kh3y44kh3y4_ztxgu4.png"
         ]
       },
 
@@ -609,7 +665,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://www.flipkart.com/images/products/iron-man-henley.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725918/Gemini_Generated_Image_o3l95po3l95po3l9_zqr5vw.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725918/Gemini_Generated_Image_o3l95po3l95po3l9_zqr5vw.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725918/Gemini_Generated_Image_o3l95po3l95po3l9_zqr5vw.png"
         ]
       },
 
@@ -630,7 +688,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://pixisoul.com/images/products/spiderman-hooded.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747988648/Gemini_Generated_Image_jy3nodjy3nodjy3n_qked6g.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747988648/Gemini_Generated_Image_jy3nodjy3nodjy3n_qked6g.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747988648/Gemini_Generated_Image_jy3nodjy3nodjy3n_qked6g.png"
         ]
       },
 
@@ -651,7 +711,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://www.flipkart.com/images/products/wonder-woman-crop.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725807/Gemini_Generated_Image_h3y44mh3y44mh3y4_yotk5q.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725807/Gemini_Generated_Image_h3y44mh3y44mh3y4_yotk5q.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725807/Gemini_Generated_Image_h3y44mh3y44mh3y4_yotk5q.png"
         ]
       },
 
@@ -672,7 +734,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://bearmode.in/products/flash-acid-wash.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747988216/Gemini_Generated_Image_1ajtus1ajtus1ajt_obthtl.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747988216/Gemini_Generated_Image_1ajtus1ajtus1ajt_obthtl.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747988216/Gemini_Generated_Image_1ajtus1ajtus1ajt_obthtl.png"
         ]
       },
 
@@ -693,7 +757,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://www.teeters.in/images/products/green-lantern-solid.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725850/Gemini_Generated_Image_x6l627x6l627x6l6_ijlatv.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725850/Gemini_Generated_Image_x6l627x6l627x6l6_ijlatv.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725850/Gemini_Generated_Image_x6l627x6l627x6l6_ijlatv.png"
         ]
       },
 
@@ -714,7 +780,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://bearmode.in/products/dark-knight-acid-wash-tshirt.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725900/Gemini_Generated_Image_xly96cxly96cxly9_byz2qr.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725900/Gemini_Generated_Image_xly96cxly96cxly9_byz2qr.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725900/Gemini_Generated_Image_xly96cxly96cxly9_byz2qr.png"
         ]
       },
 
@@ -735,7 +803,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://www.teeters.in/images/products/house-stark-polo.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725839/Gemini_Generated_Image_h3y44lh3y44lh3y4_iixbi7.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725839/Gemini_Generated_Image_h3y44lh3y44lh3y4_iixbi7.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725839/Gemini_Generated_Image_h3y44lh3y44lh3y4_iixbi7.png"
         ]
       },
 
@@ -756,7 +826,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://www.flipkart.com/images/products/superman-sleeveless.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725930/Gemini_Generated_Image_o3l95mo3l95mo3l9_j6cztr.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725930/Gemini_Generated_Image_o3l95mo3l95mo3l9_j6cztr.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725930/Gemini_Generated_Image_o3l95mo3l95mo3l9_j6cztr.png"
         ]
       },
 
@@ -777,7 +849,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://www.redwolf.in/images/products/captain-america-long-sleeve.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725927/Gemini_Generated_Image_o3l95oo3l95oo3l9_r4tf12.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725927/Gemini_Generated_Image_o3l95oo3l95oo3l9_r4tf12.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725823/Gemini_Generated_Image_h3y44kh3y44kh3y4_ztxgu4.png"
         ]
       },
 
@@ -798,7 +872,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://www.flipkart.com/images/products/iron-man-henley.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725980/Gemini_Generated_Image_h3y44nh3y44nh3y4_whtf1z.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725980/Gemini_Generated_Image_h3y44nh3y44nh3y4_whtf1z.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725980/Gemini_Generated_Image_h3y44nh3y44nh3y4_whtf1z.png"
         ]
       },
 
@@ -819,7 +895,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://pixisoul.com/images/products/spiderman-hooded.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725914/Gemini_Generated_Image_o3l95ro3l95ro3l9_ox70nq.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725914/Gemini_Generated_Image_o3l95ro3l95ro3l9_ox70nq.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725914/Gemini_Generated_Image_o3l95ro3l95ro3l9_ox70nq.png"
         ]
       },
 
@@ -840,7 +918,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://www.flipkart.com/images/products/wonder-woman-crop.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747988478/Gemini_Generated_Image_xc7uedxc7uedxc7u_zbfshk.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747988437/Gemini_Generated_Image_jpl8yojpl8yojpl8_mfpwmj.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747988459/Gemini_Generated_Image_6q7pnt6q7pnt6q7p_r44n4x.png"
         ]
       },
 
@@ -861,7 +941,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://bearmode.in/products/flash-acid-wash.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725850/Gemini_Generated_Image_h3y44ih3y44ih3y4_cgagbu.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725850/Gemini_Generated_Image_h3y44ih3y44ih3y4_cgagbu.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725850/Gemini_Generated_Image_h3y44ih3y44ih3y4_cgagbu.png"
         ]
       },
 
@@ -882,7 +964,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://www.teeters.in/images/products/green-lantern-solid.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747987938/Gemini_Generated_Image_mreh7dmreh7dmreh_pwohf3.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747987964/Gemini_Generated_Image_tiyybtiyybtiyybt_mbj4fw.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747987953/Gemini_Generated_Image_3t99d43t99d43t99_t3jbwb.png"
         ]
       },
 
@@ -903,7 +987,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://bearmode.in/products/dark-knight-acid-wash-tshirt.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725981/Gemini_Generated_Image_x6l628x6l628x6l6_rsarxx.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725981/Gemini_Generated_Image_x6l628x6l628x6l6_rsarxx.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725981/Gemini_Generated_Image_x6l628x6l628x6l6_rsarxx.png"
         ]
       },
 
@@ -924,7 +1010,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://www.teeters.in/images/products/house-stark-polo.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725938/Gemini_Generated_Image_o3l95no3l95no3l9_tcezfz.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725938/Gemini_Generated_Image_o3l95no3l95no3l9_tcezfz.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725938/Gemini_Generated_Image_o3l95no3l95no3l9_tcezfz.png"
         ]
       },
 
@@ -945,7 +1033,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://www.flipkart.com/images/products/superman-sleeveless.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747988881/Gemini_Generated_Image_w6x9ygw6x9ygw6x9_jhqpyk.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747988881/Gemini_Generated_Image_w6x9ygw6x9ygw6x9_jhqpyk.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747988881/Gemini_Generated_Image_w6x9ygw6x9ygw6x9_jhqpyk.png"
         ]
       },
 
@@ -966,7 +1056,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://www.redwolf.in/images/products/captain-america-long-sleeve.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725927/Gemini_Generated_Image_o3l95oo3l95oo3l9_r4tf12.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725927/Gemini_Generated_Image_o3l95oo3l95oo3l9_r4tf12.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725823/Gemini_Generated_Image_h3y44kh3y44kh3y4_ztxgu4.png"
         ]
       },
 
@@ -987,7 +1079,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://www.flipkart.com/images/products/iron-man-henley.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747988907/Gemini_Generated_Image_ez02xeez02xeez02_xdqvce.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747988907/Gemini_Generated_Image_ez02xeez02xeez02_xdqvce.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747988907/Gemini_Generated_Image_ez02xeez02xeez02_xdqvce.png"
         ]
       },
 
@@ -1008,7 +1102,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://pixisoul.com/images/products/spiderman-hooded.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747988648/Gemini_Generated_Image_jy3nodjy3nodjy3n_qked6g.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747988648/Gemini_Generated_Image_jy3nodjy3nodjy3n_qked6g.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747988648/Gemini_Generated_Image_jy3nodjy3nodjy3n_qked6g.png"
         ]
       },
 
@@ -1029,7 +1125,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://www.flipkart.com/images/products/wonder-woman-crop.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747988456/Gemini_Generated_Image_uot429uot429uot4_1_syw8r0.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747988456/Gemini_Generated_Image_uot429uot429uot4_1_syw8r0.png",
+          'https://res.cloudinary.com/dgwffp5i6/image/upload/v1747988456/Gemini_Generated_Image_uot429uot429uot4_1_syw8r0.png'
         ]
       },
 
@@ -1050,7 +1148,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://bearmode.in/products/flash-acid-wash.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725850/Gemini_Generated_Image_h3y44ih3y44ih3y4_cgagbu.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725850/Gemini_Generated_Image_h3y44ih3y44ih3y4_cgagbu.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725850/Gemini_Generated_Image_h3y44ih3y44ih3y4_cgagbu.png"
         ]
       },
 
@@ -1071,7 +1171,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://www.teeters.in/images/products/green-lantern-solid.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747987938/Gemini_Generated_Image_mreh7dmreh7dmreh_pwohf3.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747987964/Gemini_Generated_Image_tiyybtiyybtiyybt_mbj4fw.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747987953/Gemini_Generated_Image_3t99d43t99d43t99_t3jbwb.png"
         ]
       },
 
@@ -1092,7 +1194,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://bearmode.in/products/dark-knight-acid-wash-tshirt.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725891/Gemini_Generated_Image_h3y44hh3y44hh3y4_ksagmt.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725891/Gemini_Generated_Image_h3y44hh3y44hh3y4_ksagmt.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725891/Gemini_Generated_Image_h3y44hh3y44hh3y4_ksagmt.png"
         ]
       },
 
@@ -1113,7 +1217,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://www.teeters.in/images/products/house-stark-polo.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725938/Gemini_Generated_Image_o3l95no3l95no3l9_tcezfz.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725938/Gemini_Generated_Image_o3l95no3l95no3l9_tcezfz.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725938/Gemini_Generated_Image_o3l95no3l95no3l9_tcezfz.png"
         ]
       },
 
@@ -1134,7 +1240,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://www.flipkart.com/images/products/superman-sleeveless.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747988881/Gemini_Generated_Image_w6x9ygw6x9ygw6x9_jhqpyk.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747988881/Gemini_Generated_Image_w6x9ygw6x9ygw6x9_jhqpyk.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747988881/Gemini_Generated_Image_w6x9ygw6x9ygw6x9_jhqpyk.png"
         ]
       },
 
@@ -1155,7 +1263,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://www.redwolf.in/images/products/captain-america-long-sleeve.jpg"
+          "https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1744266668_8553529.jpg?format=webp&w=480&dpr=2.0",
+          "https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1744266668_8553529.jpg?format=webp&w=480&dpr=2.0",
+          "https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1744266668_8553529.jpg?format=webp&w=480&dpr=2.0"
         ]
       },
 
@@ -1176,7 +1286,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://www.flipkart.com/images/products/iron-man-henley.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725980/Gemini_Generated_Image_h3y44nh3y44nh3y4_whtf1z.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725980/Gemini_Generated_Image_h3y44nh3y44nh3y4_whtf1z.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725980/Gemini_Generated_Image_h3y44nh3y44nh3y4_whtf1z.png"
         ]
       },
 
@@ -1197,7 +1309,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://pixisoul.com/images/products/spiderman-hooded.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747988646/Gemini_Generated_Image_s6cx82s6cx82s6cx_rlesi9.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747988646/Gemini_Generated_Image_s6cx82s6cx82s6cx_rlesi9.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747988646/Gemini_Generated_Image_s6cx82s6cx82s6cx_rlesi9.png"
         ]
       },
 
@@ -1218,7 +1332,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://www.flipkart.com/images/products/wonder-woman-crop.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747988478/Gemini_Generated_Image_xc7uedxc7uedxc7u_zbfshk.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747988437/Gemini_Generated_Image_jpl8yojpl8yojpl8_mfpwmj.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747988459/Gemini_Generated_Image_6q7pnt6q7pnt6q7p_r44n4x.png"
         ]
       },
 
@@ -1239,7 +1355,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://bearmode.in/products/flash-acid-wash.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747988290/Gemini_Generated_Image_1vcbzj1vcbzj1vcb_volwfu.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747988290/Gemini_Generated_Image_1vcbzj1vcbzj1vcb_volwfu.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747988290/Gemini_Generated_Image_1vcbzj1vcbzj1vcb_volwfu.png"
         ]
       },
 
@@ -1260,7 +1378,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://www.teeters.in/images/products/green-lantern-solid.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747987938/Gemini_Generated_Image_mreh7dmreh7dmreh_pwohf3.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747987964/Gemini_Generated_Image_tiyybtiyybtiyybt_mbj4fw.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747987953/Gemini_Generated_Image_3t99d43t99d43t99_t3jbwb.png"
         ]
       },
 
@@ -1271,8 +1391,8 @@ data = [
         "category": "Oversized",
         "price": 1999,
         "discount": 10,
-        "size": ["L", "XL", "XXL"],
-        "specification": {
+        "sizes": ["L", "XL", "XXL"],
+        "specifications": {
           "fabric": "100% Cotton",
           "sleeveLength": "Short",
           "pattern": "Graphic",
@@ -1281,8 +1401,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://example.com/images/superman_oversized_1.jpg",
-          "https://example.com/images/superman_oversized_2.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747986548/Gemini_Generated_Image_fhcjyyfhcjyyfhcj_ahqyf6.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747986548/Gemini_Generated_Image_fhcjyyfhcjyyfhcj_ahqyf6.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747986592/Gemini_Generated_Image_60xloj60xloj60xl_tt9vpx.png"
         ]
       },
 
@@ -1293,8 +1414,8 @@ data = [
         "category": "Acid Wash",
         "price": 2499,
         "discount": 15,
-        "size": ["M", "L", "XL"],
-        "specification": {
+        "sizes": ["M", "L", "XL"],
+        "specifications": {
           "fabric": "80% Cotton, 20% Polyester",
           "sleeveLength": "Short",
           "pattern": "Acid Wash",
@@ -1303,8 +1424,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://example.com/images/batman_acidwash_1.jpg",
-          "https://example.com/images/batman_acidwash_2.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747986369/Gemini_Generated_Image_w0maz2w0maz2w0ma_zyg1xs.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747986368/Gemini_Generated_Image_2hdqea2hdqea2hdq_qfvif2.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747986367/Gemini_Generated_Image_k9srhjk9srhjk9sr_iikxbz.png"
         ]
       },
 
@@ -1315,8 +1437,8 @@ data = [
         "category": "Graphic Printed",
         "price": 1799,
         "discount": 5,
-        "size": ["S", "M", "L"],
-        "specification": {
+        "sizes": ["S", "M", "L"],
+        "specifications": {
           "fabric": "100% Cotton",
           "sleeveLength": "Short",
           "pattern": "Graphic",
@@ -1325,8 +1447,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://example.com/images/spiderman_graphic_1.jpg",
-          "https://example.com/images/spiderman_graphic_2.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747986211/Gemini_Generated_Image_96szdo96szdo96sz_zku3jv.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747986211/Gemini_Generated_Image_96szdo96szdo96sz_zku3jv.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747986212/Gemini_Generated_Image_qwvxowqwvxowqwvx_p65glr.png"
         ]
       },
 
@@ -1337,8 +1460,8 @@ data = [
         "category": "Solid Color",
         "price": 1499,
         "discount": 0,
-        "size": ["S", "M", "L", "XL"],
-        "specification": {
+        "sizes": ["S", "M", "L", "XL"],
+        "specifications": {
           "fabric": "100% Cotton",
           "sleeveLength": "Short",
           "pattern": "Solid",
@@ -1347,8 +1470,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://example.com/images/wonderwoman_solid_1.jpg",
-          "https://example.com/images/wonderwoman_solid_2.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747986044/Gemini_Generated_Image_rby8ucrby8ucrby8_baib6d.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747986043/Gemini_Generated_Image_8okd6q8okd6q8okd_tx4k4j.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747986043/Gemini_Generated_Image_8okd6q8okd6q8okd_tx4k4j.png"
         ]
       },
 
@@ -1359,8 +1483,8 @@ data = [
         "category": "Polo T-Shirts",
         "price": 2999,
         "discount": 20,
-        "size": ["M", "L", "XL"],
-        "specification": {
+        "sizes": ["M", "L", "XL"],
+        "specifications": {
           "fabric": "100% Cotton",
           "sleeveLength": "Short",
           "pattern": "Graphic",
@@ -1369,8 +1493,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://example.com/images/hulk_polo_1.jpg",
-          "https://example.com/images/hulk_polo_2.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747985877/Gemini_Generated_Image_p0vee4p0vee4p0ve_u0ys72.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747985877/Gemini_Generated_Image_p0vee4p0vee4p0ve_u0ys72.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747985875/Gemini_Generated_Image_ckemeickemeickem_i8bo6h.png"
         ]
       },
 
@@ -1381,8 +1506,8 @@ data = [
         "category": "Sleeveless",
         "price": 1599,
         "discount": 10,
-        "size": ["M", "L"],
-        "specification": {
+        "sizes": ["M", "L"],
+        "specifications": {
           "fabric": "100% Cotton",
           "sleeveLength": "Sleeveless",
           "pattern": "Graphic",
@@ -1391,8 +1516,9 @@ data = [
           "origin": "India"
         },
         "images": [
-            "https://example.com/images/hulk_polo_1.jpg",
-            "https://example.com/images/hulk_polo_2.jpg"
+            "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747985878/Gemini_Generated_Image_nb355nnb355nnb35_nsjxje.png",
+            "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747985878/Gemini_Generated_Image_nb355nnb355nnb35_nsjxje.png",
+            "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747985875/Gemini_Generated_Image_vw58fbvw58fbvw58_mxyt7g.png"
         ]
     },
 
@@ -1403,8 +1529,8 @@ data = [
         "category": "Long Sleeve",
         "price": 2499,
         "discount": 5,
-        "size": ["S", "M", "L", "XL"],
-        "specification": {
+        "sizes": ["S", "M", "L", "XL"],
+        "specifications": {
           "fabric": "100% Cotton",
           "sleeveLength": "Long",
           "pattern": "Graphic",
@@ -1413,8 +1539,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://example.com/images/thor_long_sleeve_1.jpg",
-          "https://example.com/images/thor_long_sleeve_2.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725900/Gemini_Generated_Image_xly96cxly96cxly9_byz2qr.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725900/Gemini_Generated_Image_xly96cxly96cxly9_byz2qr.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725900/Gemini_Generated_Image_xly96cxly96cxly9_byz2qr.png"
         ]
       },
 
@@ -1425,8 +1552,8 @@ data = [
         "category": "Henley",
         "price": 1999,
         "discount": 10,
-        "size": ["M", "L", "XL"],
-        "specification": {
+        "sizes": ["M", "L", "XL"],
+        "specifications": {
           "fabric": "100% Cotton",
           "sleeveLength": "Short",
           "pattern": "Graphic",
@@ -1435,8 +1562,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://example.com/images/greenlantern_henley_1.jpg",
-          "https://example.com/images/greenlantern_henley_2.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725914/Gemini_Generated_Image_xly96bxly96bxly9_yex49p.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725914/Gemini_Generated_Image_xly96bxly96bxly9_yex49p.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725914/Gemini_Generated_Image_xly96bxly96bxly9_yex49p.png"
         ]
       },
 
@@ -1447,8 +1575,8 @@ data = [
         "category": "Hooded",
         "price": 2999,
         "discount": 15,
-        "size": ["M", "L"],
-        "specification": {
+        "sizes": ["M", "L"],
+        "specifications": {
           "fabric": "100% Cotton",
           "sleeveLength": "Short",
           "pattern": "Graphic",
@@ -1457,8 +1585,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://example.com/images/deadpool_hooded_1.jpg",
-          "https://example.com/images/deadpool_hooded_2.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725945/Gemini_Generated_Image_y8xpwoy8xpwoy8xp_pcqkq6.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725945/Gemini_Generated_Image_y8xpwoy8xpwoy8xp_pcqkq6.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725945/Gemini_Generated_Image_y8xpwoy8xpwoy8xp_pcqkq6.png"
         ]
       },
 
@@ -1469,8 +1598,8 @@ data = [
         "category": "Crop Tops",
         "price": 1799,
         "discount": 5,
-        "size": ["S", "M"],
-        "specification": {
+        "sizes": ["S", "M"],
+        "specifications": {
           "fabric": "100% Cotton",
           "sleeveLength": "Short",
           "pattern": "Graphic",
@@ -1479,8 +1608,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://example.com/images/blackpanther_crop_1.jpg",
-          "https://example.com/images/blackpanther_crop_2.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725807/Gemini_Generated_Image_h3y44mh3y44mh3y4_yotk5q.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725807/Gemini_Generated_Image_h3y44mh3y44mh3y4_yotk5q.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725807/Gemini_Generated_Image_h3y44mh3y44mh3y4_yotk5q.png"
         ]
       },
 
@@ -1491,8 +1621,8 @@ data = [
         "category": "Solid Color",
         "price": 1499,
         "discount": 0,
-        "size": ["S", "M", "L"],
-        "specification": {
+        "sizes": ["S", "M", "L"],
+        "specifications": {
           "fabric": "100% Cotton",
           "sleeveLength": "Short",
           "pattern": "Solid",
@@ -1501,8 +1631,9 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://example.com/images/flash_solid_1.jpg",
-          "https://example.com/images/flash_solid_2.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725850/Gemini_Generated_Image_h3y44ih3y44ih3y4_cgagbu.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725850/Gemini_Generated_Image_h3y44ih3y44ih3y4_cgagbu.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725850/Gemini_Generated_Image_h3y44ih3y44ih3y4_cgagbu.png"
         ]
       },
 
@@ -1513,8 +1644,8 @@ data = [
         "category": "Acid Wash",
         "price": 2499,
         "discount": 15,
-        "size": ["M", "L", "XL"],
-        "specification": {
+        "sizes": ["M", "L", "XL"],
+        "specifications": {  
           "fabric": "80% Cotton, 20% Polyester",
           "sleeveLength": "Short",
           "pattern": "Acid Wash",
@@ -1523,8 +1654,32 @@ data = [
           "origin": "India"
         },
         "images": [
-          "https://example.com/images/aquaman_acidwash_1.jpg",
-          "https://example.com/images/aquaman_acidwash_2.jpg"
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725815/Gemini_Generated_Image_x6l629x6l629x6l6_xvwt9i.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725815/Gemini_Generated_Image_x6l629x6l629x6l6_xvwt9i.png",
+          "https://res.cloudinary.com/dgwffp5i6/image/upload/v1747725815/Gemini_Generated_Image_x6l629x6l629x6l6_xvwt9i.png"
         ]
     }
 ]
+
+const dbUrl = process.env.MONGO_URL;
+console.log(dbUrl);
+const main = async () => {
+    mongoose.connection.on("connected", () => console.log("Connected to DB")); // another way to show message in terminal
+    await mongoose.connect(dbUrl);
+};
+
+const initDB = async () => {
+  try{
+    await Items.deleteMany({});
+    await Items.insertMany(initData);
+    console.log("Data inserted");
+  }
+  catch(err){
+    console.log("Error inserting data", err);
+  }
+};
+
+(async () => {
+  await main();
+  await initDB();
+})();

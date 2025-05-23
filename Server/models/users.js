@@ -15,6 +15,18 @@ const userSchema = new Schema({
         type:String,
         required: true,
     },
+    profilePic: {
+        type:String,
+        default: "",
+    },
+    phone: {
+        type:String,
+        default: "",
+    },
+    address: {
+        type:String,
+        default: "",
+    },
     verifyOtp: {
         type:String,
         default: ''
@@ -37,8 +49,8 @@ const userSchema = new Schema({
     },
     userType: {
         type:String,
-        enum: ["admin", "user"],
-        default: "user",
+        enum: ["customer", "seller"],
+        default: "customer",
     }
 }, { timestamps: true });
 

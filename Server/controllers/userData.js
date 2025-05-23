@@ -13,11 +13,7 @@ module.exports.getUserData = async (req, res) => {
 
         res.json({
             success: true, 
-            userData: {
-                userName: user.userName,
-                isAccountVerifies: user.isAccountVerified,
-                userType: user.userType,
-            }
+            userData: user
         });
 
     }catch(err) {

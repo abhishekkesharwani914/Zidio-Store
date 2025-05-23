@@ -6,9 +6,9 @@ const {EMAIL_VERIFY_TEMPLATE, PASSWORD_RESET_TEMPLATE} = require("../config/emai
 
 // Register User
 module.exports.register = async(req, res) => {
-    const {userName, email, password} = req.body;
+    const {userName, email, password, userType} = req.body;
 
-    if(!userName || !email || !password) {
+    if(!userName || !email || !password, userType) {
         return res.json({success: "false", message: "Missing Details"});
     }
 
@@ -20,7 +20,7 @@ module.exports.register = async(req, res) => {
 
         const hashedPassword = await bcrypt.hash(password, 10);
         const user = new User({
-            userName, email, password:hashedPassword
+            userName, email, password:hashedPassword, userType
         });
 
         await user.save();
@@ -41,8 +41,8 @@ module.exports.register = async(req, res) => {
         const mailOptions = {
             from: process.env.SENDER_MAIL,
             to: email,
-            subject: "Welcome to KalaKriti",
-            text: `Welcome to KalaKriti Pvt Ltd. Your account has been created with email id: ${email}`
+            subject: "Welcome to Thread & Throne",
+            text: `Welcome to Thread & Throne Pvt Ltd. Your account has been created with email id: ${email}`
         };
 
         await transporter.sendMail(mailOptions);
