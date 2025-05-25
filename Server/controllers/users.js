@@ -11,7 +11,6 @@ const { log } = require("console");
 // Register User
 module.exports.register = async (req, res) => {
   const { userName, email, password, userType } = req.body;
-  console.log(req.body);
 
   if ((!userName || !email || !password, userType)) {
     return res.json({ success: "false", message: "Missing Details" });
@@ -100,8 +99,6 @@ module.exports.login = async (req, res) => {
 
     // Store session in MongoDB
     req.session.user = { id: user._id, email: email };
-
-    console.log(user);
     res.json({ user, success: true });
   } catch (err) {
     res.json({ sucess: false, message: err.message });

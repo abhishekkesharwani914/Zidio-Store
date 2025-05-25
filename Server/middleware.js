@@ -1,8 +1,20 @@
-const {itemSchema, reviewSchema,cartSchema} = require("./Schema.js");
+const {itemSchema, reviewSchema,cartSchema,userSchema} = require("./Schema.js");
 const ExpressError = require("./utils/expressError.js");
 const JWT = require("jsonwebtoken");
 
-// Review Validation Middleware
+// User Validation Middleware
+module.exports.validateUser = (req, res, next) => {
+    let {error} = userSchema.validate(req.body);
+    if(error) {
+        // throw new ExpressError(400, result.error.details.map(el => el.message).join(", "));
+        let errMsg = error.details.map(el => el.message).join(",");
+        throw new ExpressError(400, errMsg);
+    } else {
+        next();
+    }
+};
+
+// Item Validation Middleware
 module.exports.validateItem = (req, res, next) => {
     let {error} = itemSchema.validate(req.body);
     if(error) {
