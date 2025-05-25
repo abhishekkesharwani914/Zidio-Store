@@ -14,7 +14,7 @@ const MongoStore = require("connect-mongo");
 const main = require("./config/mongodb.js");
 
 const corsOptions = {
-  origin: "http://localhost:5173", // Replace with your frontend URL
+  origin: "https://localhost:5173", // Replace with your frontend URL
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true, // If your frontend needs to send cookies or authorization headers
 };
@@ -69,15 +69,17 @@ app.use("/shop", itemsRoute);
 
 // Error Handling Route
 app.all("/", (req, res, next) => {
-    next(new ExpressError(404, "Page Not Found"));;
+  next(new ExpressError(404, "Page Not Found"));
 });
 
 app.use((err, req, res, next) => {
-    if (err instanceof ExpressError) {
-        return res.status(err.statusCode).json({success: false, message: err.message});
-    }
-    console.error(err);
-    res.status(500).json({success: false, message: "Internal Server Error"});
+  if (err instanceof ExpressError) {
+    return res
+      .status(err.statusCode)
+      .json({ success: false, message: err.message });
+  }
+  console.error(err);
+  res.status(500).json({ success: false, message: "Internal Server Error" });
 });
 
 app.listen(5000, () => {
