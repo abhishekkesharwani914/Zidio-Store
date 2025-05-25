@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Input, Button } from "../../index.js";
 import { useDispatch } from "react-redux";
 import { login } from "../../Store/authSlice.js";
+import { userLogin } from "../../api/authApi.js";
 
 const SignPage = () => {
   const dispatch = useDispatch();
@@ -14,13 +15,16 @@ const SignPage = () => {
     formState: { errors },
   } = useForm();
   const navigate = useNavigate();
-  const onSubmit = (data) => {
-    if (data) {
-      dispatch(
-        login({ userType: data.accountType, userData: data })
-      );
-      navigate("/");
-    }
+  const onSubmit = async (data) => {
+    const [response, error] = await userLogin(data);
+    console.log(response);
+
+    // if (response) {
+    //   dispatch(
+    //     login({ userType: data.accountType, userData: data })
+    //   );
+    //   navigate("/");
+    // }
   };
 
   return (
@@ -88,16 +92,6 @@ const SignPage = () => {
               error={errors}
               name="password"
             />
-            <div>
-              <select
-                {...register("accountType", { required: true })}
-                className="bg-black w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition placeholder-gray-400"
-              >
-                <option value="customer">Customer</option>
-                <option value="seller">Seller</option>
-              </select>
-            </div>
-
             <Button children="Login" type="submit" />
 
             {/* 
@@ -120,8 +114,7 @@ const SignPage = () => {
               New to DUKE & VILLAN?
               <Link
                 to="/accounts/signup"
-                className="text-blue-500 font-semibold hover:underline ml-2"
-              >
+                className="text-blue-500 font-semibold hover:underline ml-2">
                 Create account
               </Link>
             </p>

@@ -45,25 +45,30 @@ function RootApp() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <>
-        {/* Public Auth Routes */}
+        {/* Public Routes */}
+        <Route element={<App />}>
+          <Route index element={<Home />} /> {/* Home page visible to all */}
+          <Route path="shop" element={<Shop />} />
+          <Route path="product-detail" element={<ProductDetails />} />
+          <Route path="help-support" element={<HelpAndSupport />} />
+        </Route>
+
+        {/* Auth Pages (Public) */}
         <Route path="accounts">
           <Route path="login" element={<SigninPage />} />
           <Route path="signup" element={<SignUpPage />} />
         </Route>
 
-        {/* Protected App Routes */}
+        {/* Protected Routes */}
         <Route
-          path="/"
           element={
             <ProtectedRoute allowedUser={["customer", "seller"]}>
               <App />
             </ProtectedRoute>
-          }
-        >
-          <Route index element={<Home />} />
-          <Route path="shop" element={<Shop />} />
+          }>
           <Route path="cart" element={<Cart />} />
-          <Route path="product-detail" element={<ProductDetails />} />
+
+          {/* Customer Dashboard */}
           <Route path="account" element={<Dashboard />}>
             <Route path="orders" element={<Orders />} />
             <Route path="profile" element={<Profile />} />
@@ -72,16 +77,16 @@ function RootApp() {
             </Route>
             <Route path="payment" element={<Payment />} />
             <Route path="wishlist" element={<Wishlist />} />
-            <Route path="cart" element={<Cart />} />
           </Route>
+
+          {/* Seller Dashboard */}
           <Route
-            path="/store"
+            path="store"
             element={
               <ProtectedRoute allowedUser={["seller"]}>
                 <SellerDashboard />
               </ProtectedRoute>
-            }
-          >
+            }>
             <Route index element={<Overview />} />
             <Route path="products" element={<Products />} />
             <Route path="orders" element={<SellerOrders />} />
@@ -91,9 +96,9 @@ function RootApp() {
             <Route path="analytics" element={<Analytics />} />
             <Route path="add-product" element={<AddProductPage />} />
           </Route>
-          <Route path="help-support" element={<HelpAndSupport />} />
         </Route>
-        {/* Fallback route */}
+
+        {/* Fallback */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </>
     )
