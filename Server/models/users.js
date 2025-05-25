@@ -50,7 +50,6 @@ const userSchema = new Schema({
     userType: {
         type:String,
         enum: ["customer", "seller"],
-        default: "customer",
     }
 }, { timestamps: true });
 

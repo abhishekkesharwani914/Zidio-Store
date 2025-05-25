@@ -2,10 +2,11 @@ const express = require('express');
 const router = express.Router();
 const { userAuth } = require('../middleware.js');
 const wrapAsync = require("../utils/wrapAsync.js");
+const {validateUser} = require("../middleware.js");
 
 const userController = require("../controllers/users.js");
 
-router.post("/register",wrapAsync(userController.register));
+router.post("/register",validateUser,wrapAsync(userController.register));
 router.post("/login", wrapAsync(userController.login));
 router.post("/logout", wrapAsync(userController.logout));
 router.post("/send-verify-otp",userAuth, wrapAsync(userController.sendVerifyOtp));

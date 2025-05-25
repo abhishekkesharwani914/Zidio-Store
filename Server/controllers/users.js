@@ -87,7 +87,7 @@ module.exports.login = async (req, res) => {
         // Store session in MongoDB
         req.session.user = {id:user._id, email: email};
 
-        res.json({success: true});
+        res.json({success: true, usertype: user.userType, message: `Welcome back! ${user.userName}`});
 
     }catch(err) {
         res.json({sucess: false, message: err.message});

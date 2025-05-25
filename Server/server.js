@@ -66,9 +66,17 @@ app.use("/items/:id/reviews", reviewRoute);
 app.use("/shop", itemsRoute);
 
 // Error Handling Route
-// app.use("*", (req, res, next) => {
-//     res.status(404).json({success: false, message: "Route Not Found"});
-// });
+app.all("/", (req, res, next) => {
+    next(new ExpressError(404, "Page Not Found"));;
+});
+
+app.use((err, req, res, next) => {
+    if (err instanceof ExpressError) {
+        return res.status(err.statusCode).json({success: false, message: err.message});
+    }
+    console.error(err);
+    res.status(500).json({success: false, message: "Internal Server Error"});
+});
 
 app.listen(5000, () => {
     console.log(`Server is running on port ${5000}`);
