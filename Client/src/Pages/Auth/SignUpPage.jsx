@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { Input, Button } from "../../index.js";
-
+import { userRegister } from "../../api/authApi.js";
+import { ToastContainer, toast, Bounce } from "react-toastify";
 const SignupPage = () => {
   const {
     register,
@@ -10,8 +11,17 @@ const SignupPage = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log("Form Data:", data);
+  const onSubmit = async (data) => {
+    const [response, error] = await userRegister(data);
+    if (response.success) {
+      toast.success("Account created successfully!");
+    }
+    if (response.message === "User already exist") {
+      toast.info("User already exists. Please log in instead.");
+    }
+    if (error) {
+      toast.error("An error occurred. Please try again.");
+    }
   };
 
   return (
@@ -47,17 +57,17 @@ const SignupPage = () => {
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 ">
             {/* Username Field */}
             <Input
-              type="username"
-              placeholder="Username"
-              {...register("username", {
-                required: "Username is required",
+              type="userName"
+              placeholder="UserName"
+              {...register("userName", {
+                required: "UserName is required",
                 minLength: {
                   value: 3,
-                  message: "Username must be at least 3 characters long",
+                  message: "UserName must be at least 3 characters long",
                 },
               })}
               error={errors}
-              name="username"
+              name="userName"
             />
 
             {/* Email Field */}
@@ -97,9 +107,8 @@ const SignupPage = () => {
 
             <div>
               <select
-                {...register("accountType", { required: true })}
-                className="bg-black w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition placeholder-gray-400"
-              >
+                {...register("userType", { required: true })}
+                className="bg-black w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition placeholder-gray-400">
                 <option value="customer">Customer</option>
                 <option value="seller">Seller</option>
               </select>
@@ -114,14 +123,26 @@ const SignupPage = () => {
               Already have an account?
               <Link
                 to="/accounts/login"
-                className="text-blue-500 font-semibold hover:underline ml-2"
-              >
+                className="text-blue-500 font-semibold hover:underline ml-2">
                 Log in
               </Link>
             </p>
           </div>
         </div>
       </div>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+        transition={Bounce}
+      />
     </div>
   );
 };

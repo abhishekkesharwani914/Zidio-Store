@@ -52,10 +52,11 @@ module.exports.getOrders = async (req, res) => {
     const {userId} = req.body;
     try {
         const order = await Order.find({userId}).populate("items.itemId");
+        const user = await User.findById(userId);
         if (!order) {
             return res.json({ success: false, message: 'No orders found' });
         }
-        res.json({success: true,orders:order});
+        res.json({success: true,orders:order,contact: (user.phone, user.email), shippingDetail: user.shippingInfo, });
     } catch (error) {
         res.status(500).json({ message: 'Error fetching orders', error });
     }
