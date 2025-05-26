@@ -5,7 +5,7 @@ module.exports.userSchema = Joi.object({
     email: Joi.string().email().required(),
     password: Joi.string().min(6).required(),
     profilePic: Joi.string().allow("", null),
-    phone: Joi.string().allow("", null),
+    phone: Joi.number().allow("", null),
     address: Joi.string().allow("", null),
     userType: Joi.string().valid("customer", "seller").required()
 })

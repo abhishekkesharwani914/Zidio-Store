@@ -20,11 +20,7 @@ const userSchema = new Schema({
         default: "",
     },
     phone: {
-        type:String,
-        default: "",
-    },
-    address: {
-        type:String,
+        type:Number,
         default: "",
     },
     verifyOtp: {
@@ -50,7 +46,21 @@ const userSchema = new Schema({
     userType: {
         type:String,
         enum: ["customer", "seller"],
-    }
+    },
+    orders: [{
+        type: Schema.Types.ObjectId,
+        ref: "Order"
+    }],
+    shippingInfo: [{
+        address: String,
+        city: String,
+        postalCode: {
+            type: String,
+            minlength: 6,
+            maxlength: 6,
+        },
+        country: String
+  }],
 }, { timestamps: true });
 
 module.exports = mongoose.model("User", userSchema);
