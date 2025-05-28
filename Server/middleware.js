@@ -6,6 +6,7 @@ const {
 } = require("./Schema.js");
 const ExpressError = require("./utils/expressError.js");
 const JWT = require("jsonwebtoken");
+const Items = require("./models/itemModel.js");
 
 // User Validation Middleware
 module.exports.validateUser = (req, res, next) => {
@@ -30,6 +31,17 @@ module.exports.validateItem = (req, res, next) => {
     next();
   }
 };
+
+// Is owner or not Middleware
+module.exports.isOwner = async (req, res, next) =>{
+  let {id} = req.params;
+  const item = await Items.findById(id);
+  if(item.seller._id !== req.body.userId){
+    return res.json({success: false, message: "You are not owner of this item/product"});
+  }
+  next();
+
+}
 
 // Review Validation Middleware
 module.exports.validateReview = (req, res, next) => {
@@ -59,7 +71,7 @@ module.exports.userAuth = async (req, res, next) => {
     const tokenDecode = JWT.verify(token, process.env.JWT_SECRET);
     if (tokenDecode.id) {
       req.body.userId = tokenDecode.id;
-      req.user = tokenDecode;
+      req.user = tokenDecode.id;
     } else {
       return res.json({
         success: false,

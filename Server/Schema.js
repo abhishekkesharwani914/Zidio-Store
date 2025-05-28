@@ -26,6 +26,8 @@ module.exports.itemSchema = Joi.object({
   category: Joi.string().required(),
   sizes: Joi.array().items(Joi.string()).required(),
   images: Joi.array().items(Joi.string()).required(),
+  stocks: Joi.number().required(),
+  seller: Joi.string().required()
 });
 
 module.exports.reviewSchema = Joi.object({

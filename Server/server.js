@@ -82,7 +82,7 @@ app.use((err, req, res, next) => {
       .json({ success: false, message: err.message });
   }
   console.error(err);
-  res.status(500).json({ success: false, message: "Internal Server Error" });
+  res.status(500).json({ success: false, message: err.message });
 });
 
 app.listen(5000, () => {

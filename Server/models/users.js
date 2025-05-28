@@ -23,6 +23,9 @@ const userSchema = new Schema(
     phone: {
         type:Number,
     },
+    name: {
+      type:String,
+    },
     verifyOtp: {
       type: String,
       default: "",
@@ -47,7 +50,7 @@ const userSchema = new Schema(
         type:String,
         enum: ["customer", "seller"],
     },
-    shippingInfo: {
+    shippingInfo: { // Address
       address: String,
       city: String,
       postalCode: {type: Number, minlength: 6, maxlength: 6},

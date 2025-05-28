@@ -19,14 +19,14 @@ module.exports.createOrder = async (req, res) => {
         quantity: item.quantity,
       }));
 
-      const order = new Order({userId, cartId, items, totalAmount,paymentMethod});
+      const order = new Order({userId, items, totalAmount,paymentMethod});
       
       // Saving Order
       await order.save();
 
-      user.orders.push(order._id);
-      user.shippingInfo.push(shippingInfo);
-      await user.save();
+      // user.orders.push(order._id);
+      // user.shippingInfo.push(shippingInfo);
+      // await user.save();
 
       // Removing cart after order placing
       await Cart.findByIdAndDelete(cartId);
@@ -53,7 +53,7 @@ module.exports.getOrders = async (req, res) => {
     try {
         const order = await Order.find({userId}).populate("items.itemId");
         const user = await User.findById(userId);
-        if (!order) {
+        if (order.length == 0) {
             return res.json({ success: false, message: 'No orders found' });
         }
         res.json({success: true,orders:order,contact: (user.phone, user.email), shippingDetail: user.shippingInfo, });
