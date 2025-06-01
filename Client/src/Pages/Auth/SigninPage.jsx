@@ -5,6 +5,7 @@ import { Input, Button } from "../../index.js";
 import { useDispatch } from "react-redux";
 import { login } from "../../Store/authSlice.js";
 import { userLogin } from "../../api/authApi.js";
+import { ToastContainer, toast, Bounce } from "react-toastify";
 
 const SignPage = () => {
   const dispatch = useDispatch();
@@ -19,12 +20,26 @@ const SignPage = () => {
     const [response, error] = await userLogin(data);
     console.log(response);
 
-    // if (response) {
-    //   dispatch(
-    //     login({ userType: data.accountType, userData: data })
-    //   );
-    //   navigate("/");
-    // }
+    if (response.success) {
+      dispatch(
+        login({
+          userType: response.userType,
+          userData: {
+            email: `${response.email}`,
+            username: `${response.username}`,
+          },
+        })
+      );
+
+      if (response.message === "Invalid Password") {
+        toast.error("Invalid Password");
+      }
+      if (error) {
+        toast.error("An error occurred. Please try again.");
+      }
+
+      navigate("/");
+    }
   };
 
   return (
@@ -121,6 +136,19 @@ const SignPage = () => {
           </div>
         </div>
       </div>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+        transition={Bounce}
+      />
     </div>
   );
 };

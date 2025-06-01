@@ -10,15 +10,23 @@ function UserAccount() {
 
   return (
     <div className="lg:flex lg:min-h-screen text-white pt-[60px] ">
-      <div className="shadow-md overflow-hidden sticky lg:top-6 top-10 w-full h-fit lg:h-[calc(100vh-3rem)] bg-black border-r border-gray-700 lg:w-64 z-50">
-        <div className="flex md:flex-col p-4 space-y-2 h-full justify-evenly border-b border-gray-700 md:border-0 ">
+      <div className="shadow-lg overflow-hidden sticky lg:top-6 top-10 w-full h-fit lg:h-[calc(100vh-3rem)] lg:w-64 z-50">
+        <div className="flex md:flex-col p-4 space-y-2 h-full justify-evenly">
           {/* Header */}
-          <div className="mb-4 p-2 border-b border-gray-700 hidden md:block">
-            <h2 className="text-xl font-bold text-white">My Account</h2>
+          <div className="mb-4 p-2 pb-4 border-b border-gray-800 hidden md:block">
+            <h2 className="text-xl font-bold text-white flex items-center gap-2">
+              <svg
+                className="w-6 h-6 text-yellow-400"
+                viewBox="0 0 24 24"
+                fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" />
+              </svg>
+              My Account
+            </h2>
           </div>
 
           {/* Navigation Links */}
-          <div className="flex overflow-y-auto lg:block sm:gap-10 md:gap-2 md:border-b md:border-gray-700 lg:border-0 items-center gap-3 ">
+          <div className="flex overflow-y-auto lg:block sm:gap-10 md:gap-2 items-center gap-3">
             {[
               {
                 path: "/account",
@@ -57,23 +65,19 @@ function UserAccount() {
                 to={item.path}
                 key={index}
                 className={({ isActive }) =>
-                  `flex items-center space-x-2 md:p-3 rounded-lg transition-colors md:mb-1 lg:w-full ${
+                  `flex items-center space-x-3 p-3 rounded-lg transition-all ${
                     isActive
-                      ? "md:bg-yellow-400 md:text-black md:font-medium md:border-l-4 border-yellow-700"
-                      : "md:text-gray-300 md:hover:text-white md:hover:bg-gray-800"
+                      ? "bg-gray-800 text-yellow-400 font-medium border-l-4 border-yellow-400"
+                      : "text-gray-400 hover:text-white hover:bg-gray-800"
                   }`
-                }
-              >
+                }>
                 <span
-                  className={`p-1 rounded-lg 
-                  `}
-                >
+                  className={`p-1 rounded-lg`}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
                     fill="currentColor"
-                    className="md:w-5 md:h-5 sm:h-7 sm:w-7 max-sm:w-6 max-sm:h-6"
-                  >
+                    className="w-5 h-5">
                     <path d={item.icon}></path>
                   </svg>
                 </span>
@@ -85,19 +89,17 @@ function UserAccount() {
           </div>
 
           {/* Logout Button */}
-          <div className="mt-auto pt-4 border-t border-gray-700 hidden lg:block">
+          <div className="mt-auto pt-4 border-t border-gray-800 hidden lg:block">
             <button
               type="button"
-              className="flex items-center space-x-3 p-3 rounded-lg bg-red-900/30 text-red-400 hover:bg-red-900/50 hover:text-red-300 transition-colors w-full"
-            >
-              <span className="p-1 rounded-lg bg-red-900/20">
+              className="flex items-center space-x-3 p-3 rounded-lg text-red-400 hover:bg-gray-800 hover:text-red-300 transition-colors w-full group">
+              <span className="p-1 rounded-lg group-hover:bg-red-900/20 transition-colors">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   width="20"
                   height="20"
-                  fill="currentColor"
-                >
+                  fill="currentColor">
                   <path d="M5 11H13V13H5V16L0 12L5 8V11ZM3.99927 18H6.70835C8.11862 19.2447 9.97111 20 12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C9.97111 4 8.11862 4.75527 6.70835 6H3.99927C5.82368 3.57111 8.72836 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C8.72836 22 5.82368 20.4289 3.99927 18Z"></path>
                 </svg>
               </span>
@@ -174,8 +176,7 @@ function UserAccount() {
                 <NavLink
                   to={action.path}
                   key={index}
-                  className="bg-[#000000] rounded-lg p-5 border border-gray-200 hover:border-blue-200 hover:shadow-md transition-all flex flex-col items-center text-center"
-                >
+                  className="bg-[#000000] rounded-lg p-5 border border-gray-200 hover:border-blue-200 hover:shadow-md transition-all flex flex-col items-center text-center">
                   <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center mb-3">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -185,8 +186,7 @@ function UserAccount() {
                       fill="none"
                       stroke="currentColor"
                       strokeWidth="2"
-                      className="text-blue-600"
-                    >
+                      className="text-blue-600">
                       <path d={action.icon}></path>
                     </svg>
                   </div>

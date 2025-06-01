@@ -98,7 +98,7 @@ function CategorySection() {
             {[...categories, ...categories].map((category, index) => (
               <div
                 key={index}
-                className="relative w-[275px] h-[440px] group overflow-hidden rounded-xl cursor-pointer"
+                className="relative aspect-[480/660] min-h-96 group overflow-hidden rounded-xl cursor-pointer"
                 onClick={() => navigate("/shop")}
               >
                 {/* Video Background */}

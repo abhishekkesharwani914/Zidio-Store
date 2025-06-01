@@ -7,17 +7,21 @@ export const userLogin = async (data) => {
       withCredentials: true,
     })
   );
-  return [response, error];
+  return [response?.data, error];
 };
 export const userRegister = async (data) => {
   const [response, error] = await AsyncHandler(() =>
-    axiosInstance.post(
-      `${import.meta.env.VITE_SERVER_URL}/user/auth/register`,
-      data
-    )
+    axiosInstance.post(`/user/auth/register`, data)
   );
   return [response?.data, error];
 };
+export const userLogout = async () => {
+  const [response, error] = await AsyncHandler(() =>
+    axiosInstance.post(`/user/auth/logout`)
+  );
+  return [response?.data, error];
+};
+
 export const userData = async (data) => {
   const [response, error] = await AsyncHandler(() =>
     axiosInstance.post(

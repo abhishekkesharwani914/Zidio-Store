@@ -30,7 +30,7 @@ function ProductImageSlider({ images }) {
           {images.map((image, index) => (
             <SwiperSlide key={index}>
               <img
-                src={image.image}
+                src={image}
                 alt={`Image ${index + 1}`}
                 className="w-full h-[calc(600px-140px)] md:h-[calc(716px-140px)] object-cover  bg-green-500 transition-transform duration-300 hover:scale-105"
               />
@@ -51,7 +51,7 @@ function ProductImageSlider({ images }) {
             <SwiperSlide key={index}>
               <div className="w-full h-full overflow-hidden rounded-xl  bg-green-700 border-2 cursor-pointer">
                 <img
-                  src={image.image}
+                  src={image}
                   alt={`Thumb ${index + 1}`}
                   className="w-full h-full object-cover"
                 />

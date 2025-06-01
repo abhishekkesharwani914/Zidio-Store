@@ -12,11 +12,15 @@ const SignupPage = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
+    
     const [response, error] = await userRegister(data);
-    if (response.success) {
+    console.log(response);
+    console.log(data);
+
+    if (response?.success) {
       toast.success("Account created successfully!");
     }
-    if (response.message === "User already exist") {
+    if (response?.message === "User already exist") {
       toast.info("User already exists. Please log in instead.");
     }
     if (error) {
@@ -130,19 +134,7 @@ const SignupPage = () => {
           </div>
         </div>
       </div>
-      <ToastContainer
-        position="bottom-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick={false}
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-        transition={Bounce}
-      />
+      
     </div>
   );
 };

@@ -61,9 +61,9 @@ function ExclusiveCollection() {
         </div>
 
         {/* Products Grid */}
-        <div className="flex flex-wrap items-center justify-center gap-5">
+        <div className="flex items-center justify-center gap-5">
           {collections.map((item, index) => (
-            <div className="w-[275px] h-[336px] rounded-xl overflow-hidden">
+            <div className="aspect-[4/4] rounded-xl overflow-hidden">
               <img
                 src={item.img}
                 alt=""
