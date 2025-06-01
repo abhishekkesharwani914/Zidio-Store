@@ -25,3 +25,14 @@ module.exports.itemsDetails = async (req, res) => {
         res.json(err);
     }
 };
+
+module.exports.deleteItems = async (req, res) => {
+    try{
+        let {id} = req.params;
+        await Listing.findByIdAndDelete(id);
+        res.json({message: "Item deleted successfully"});
+    
+    } catch (err) {
+        res.json({success: false, message: "Error deleting items", error: err});
+    }
+}

@@ -25,6 +25,7 @@ const cartRoute = require("./routes/cart.js");
 const userDataRoute = require("./routes/userData.js");
 const itemsRoute = require("./routes/items.js");
 const reviewRoute = require("./routes/review.js");
+const orderRoute = require("./routes/orders.js");
 
 // Connection with Database
 main();
@@ -66,6 +67,8 @@ app.use("/user", userDataRoute);
 app.use("/cart", cartRoute);
 app.use("/items/:id/reviews", reviewRoute);
 app.use("/shop", itemsRoute);
+app.use("/orders", orderRoute);
+
 
 // Error Handling Route
 app.all("/", (req, res, next) => {
@@ -79,7 +82,7 @@ app.use((err, req, res, next) => {
       .json({ success: false, message: err.message });
   }
   console.error(err);
-  res.status(500).json({ success: false, message: "Internal Server Error" });
+  res.status(500).json({ success: false, message: err.message });
 });
 
 app.listen(5000, () => {

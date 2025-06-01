@@ -1,15 +1,15 @@
 const Joi = require("joi");
 
 module.exports.userSchema = Joi.object({
-  userName: Joi.string().required(),
-  email: Joi.string().email().required(),
-  password: Joi.string().min(6).required(),
-  profilePic: Joi.string().allow("", null),
-  phone: Joi.string().allow("", null),
-  address: Joi.string().allow("", null),
-  userType: Joi.string().valid("customer", "seller").required(),
-});
-
+    userName: Joi.string().required(),
+    email: Joi.string().email().required(),
+    password: Joi.string().min(6).required(),
+    profilePic: Joi.string().allow("", null),
+    phone: Joi.number().min(10).max(10).allow(null),
+    address: Joi.string().allow("", null),
+    userType: Joi.string().valid("customer", "seller").required()
+})
+    
 module.exports.itemSchema = Joi.object({
   title: Joi.string().required(),
   price: Joi.number().required().min(0),
@@ -26,6 +26,8 @@ module.exports.itemSchema = Joi.object({
   category: Joi.string().required(),
   sizes: Joi.array().items(Joi.string()).required(),
   images: Joi.array().items(Joi.string()).required(),
+  stocks: Joi.number().required(),
+  seller: Joi.string().required()
 });
 
 module.exports.reviewSchema = Joi.object({
