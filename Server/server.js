@@ -27,6 +27,7 @@ const itemsRoute = require("./routes/items.js");
 const reviewRoute = require("./routes/review.js");
 const orderRoute = require("./routes/orders.js");
 const wishlistRoute = require("./routes/wishlist.js");
+const paymentRoute = require("./routes/payment.js");
 
 // Connection with Database
 main();
@@ -70,6 +71,7 @@ app.use("/items", itemsRoute);
 app.use("/orders", orderRoute);
 app.use("/items/:id/reviews", reviewRoute); // here id is itemId
 app.use("/wishlist", wishlistRoute);
+app.use('/payment', paymentRoute); // Payment route
 
 // Error Handling Route
 app.all("/", (req, res, next) => {
