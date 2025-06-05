@@ -1,4 +1,6 @@
-require('dotenv').config();
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
 const mongoose = require("mongoose");
 const Items = require("../models/itemModel");
 
@@ -1661,7 +1663,8 @@ const initData = [
     }
 ]
 
-const dbUrl = "mongodb+srv://abhishekkesharwani914:RZHtBKdpUWCIh85P@cluster0.veivohm.mongodb.net/?appName=Cluster0";
+const dbUrl = process.env.MONGO_URL;
+console.log(dbUrl);
 const main = async () => {
     mongoose.connection.on("connected", () => console.log("Connected to DB")); // another way to show message in terminal
     await mongoose.connect(dbUrl);
