@@ -1,6 +1,5 @@
 import React from "react";
 
-
 function TextScrollBanner({ texts }) {
   const duplicatedTexts = [...texts, ...texts, ...texts];
 
@@ -16,10 +15,9 @@ function TextScrollBanner({ texts }) {
           {duplicatedTexts.map((text, index) => (
             <li
               key={`${text}-${index}`}
-              className="flex items-center justify-center gap-4 transition-transform duration-300 group-hover:scale-[1.02] h-full py-5"
-            >
+              className="flex items-center justify-center gap-4 transition-transform duration-300 group-hover:scale-[1.02] h-full py-5">
               {/* Gradient text with batman font */}
-              <h1 className="text-2xl md:text-3xl font-bold  text-yellow-400 bg-clip-text whitespace-nowrap tracking-tighter">
+              <h1 className="text-2xl md:text-3xl font-bold  text-yellow-400 bg-clip-text whitespace-nowrap tracking-tighter uppercase font-stretch-50%">
                 {text}
               </h1>
 

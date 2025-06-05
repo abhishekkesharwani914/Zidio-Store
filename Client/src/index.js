@@ -22,11 +22,12 @@ import Profile from "./Pages/Customer/Profile";
 import Shop from "./Pages/Customer/Shop";
 import Wishlist from "./Pages/Customer/Wishlist";
 import HeroSection from "./Pages/Common/Home/HeroSection";
-import DealSection from "./Pages/Common/Home/DealSection";
 import CategorySection from "./Pages/Common/Home/CategorySection";
 import ExclusiveCollection from "./Pages/Common/Home/ExclusiveCollection";
 import Newsletter from "./Pages/Common/Home/Newsletter";
-import CustomerReviewSection from "./Pages/Common/Home/CustomerReviewSection";
+import Review from "./Pages/Common/Home/Review";
+import NewArrivals from "./Pages/Common/Home/NewArrivals";
+import TrendingProduct from "./Pages/Common/Home/TrendingProduct";
 import CareAndStylingTipsSection from "./Pages/Common/Home/CareAndStylingTipsSection";
 import TextScrollBanner from "./Pages/Common/Home/TextScrollBanner";
 import { Filter, MobileFilter } from "./Component/Filter";
@@ -82,11 +83,10 @@ export {
   Loader,
   MobileFilter,
   MobileProductSort,
-  DealSection,
   CategorySection,
   ExclusiveCollection,
   Newsletter,
-  CustomerReviewSection,
+  Review,
   CareAndStylingTipsSection,
   SellerDashboard,
   Sidebar,
@@ -106,4 +106,6 @@ export {
   SellerOrders,
   Products,
   AddProductPage,
+  NewArrivals,
+  TrendingProduct,
 };

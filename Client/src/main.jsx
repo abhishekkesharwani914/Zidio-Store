@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";
 import ProtectedRoute from "./Utils/ProtectedRoute.jsx";
+import { PersistGate } from "redux-persist/integration/react";
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -37,7 +38,7 @@ import {
   AddProductPage,
 } from "./index.js";
 import { Provider, useSelector } from "react-redux";
-import { store } from "./Store/store.js";
+import { persistor, store } from "./Store/store.js";
 
 // Auth wrapper for protected routes
 
@@ -49,7 +50,7 @@ function RootApp() {
         <Route element={<App />}>
           <Route index element={<Home />} /> {/* Home page visible to all */}
           <Route path="shop" element={<Shop />} />
-          <Route path="product-detail" element={<ProductDetails />} />
+          <Route path="product-detail/:id" element={<ProductDetails />} />
           <Route path="help-support" element={<HelpAndSupport />} />
         </Route>
 
@@ -109,6 +110,8 @@ function RootApp() {
 
 createRoot(document.getElementById("root")).render(
   <Provider store={store}>
-    <RootApp />
+    <PersistGate loading={null} persistor={persistor}>
+      <RootApp />
+    </PersistGate>
   </Provider>
 );

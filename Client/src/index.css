@@ -59,7 +59,10 @@
 }
 
 .scroll {
-  animation: scroll 30s linear infinite;
+  animation: scroll 60s linear infinite;
+}
+.reverse-scroll {
+  animation: scroll 60s linear reverse infinite;
 }
 
 @keyframes scroll {
@@ -350,4 +353,48 @@
 .float-delayed {
   animation: float 6s ease-in-out infinite;
   animation-delay: 3s;
+}
+
+.preloader-leave {
+  opacity: 0;
+}
+
+.animated-tshirt {
+  animation: float 3s ease-in-out infinite;
+}
+
+.thread-circle {
+  animation: spin 8s linear infinite;
+}
+
+.thread-path {
+  animation: dash 2s linear infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(2deg);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dash {
+  from {
+    stroke-dashoffset: 10;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
 }

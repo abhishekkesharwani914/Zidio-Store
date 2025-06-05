@@ -7,75 +7,29 @@ import {
   MobileProductSort,
 } from "../../index.js";
 import { IMAGE } from "../../assets/index.js";
+import { useState } from "react";
+import { useEffect } from "react";
+import { shopItems } from "../../api/ShopApi.js";
+import Loader2 from "../../Component/Loader2.jsx";
 
 function ProductPage() {
+  const [items, setItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  useEffect(() => {
+    const fetchItems = async () => {
+      setIsLoading(true);
+      const [data, error] = await shopItems();
+      if (data) {
+        setIsLoading(false);
+        setItems(data);
+      }
+    };
+    fetchItems();
+  }, []);
+  console.log(items);
   return (
     <div className="flex flex-col items-center justify-center bg-black">
-      {/* Batman-Themed Hero Section */}
-      <header className="relative h-[90vh] w-full overflow-hidden mb-2">
-        {/* Dark Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-yellow-400/10 z-10"></div>
-
-        {/* Bat-Signal Inspired Background */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="absolute w-[200%] h-[200%] bg-gradient-radial from-yellow-400/5 via-transparent to-transparent animate-pulse-slow"></div>
-        </div>
-
-        {/* Background Image */}
-        <img
-          src={IMAGE}
-          alt="Batman Collection"
-          className="absolute inset-0 w-full h-full object-cover object-center transition-all duration-1000 ease-[cubic-bezier(0.33,1,0.68,1)] group-hover:scale-105"
-        />
-
-        {/* Bat Particle Effects */}
-        <div className="absolute inset-0 z-10 opacity-20">
-          {[...Array(15)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute"
-              style={{
-                width: `${Math.random() * 20 + 10}px`,
-                height: `${Math.random() * 10 + 5}px`,
-                top: `${Math.random() * 100}%`,
-                left: `${Math.random() * 100}%`,
-                background:
-                  'url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEyLDIgQzYuNDgsMiAyLDYuNDggMiwxMiBDMiwxNy41MiA2LjQ4LDIyIDEyLDIyIEMxNy41MiwyMiAyMiwxNy41MiAyMiwxMiBDMjIsNi40OCAxNy41MiwyIDEyLDIgTTEyLDMuNDIgQzE2Ljg2LDMuNDIgMjAuNTgsNy4xNCAyMC41OCwxMiBDMjAuNTgsMTYuODYgMTYuODYsMjAuNTggMTIsMjAuNTggQzcuMTQsMjAuNTggMy40MiwxNi44NiAzLjQyLDEyIEMzLjQyLDcuMTQgNy4xNCwzLjQyIDEyLDMuNDIgTTYuNSwxMS45OSBDNi41LDkuMjQgOC42OSw2Ljg3IDExLjUsNi41IEwxMS41LDQuMjUgQzcuNTMsNC43MyA0LjUsOC4xMSA0LjUsMTEuOTkgQzQuNSwxNS44NyA3LjUzLDE5LjI1IDExLjUsMTkuNzQgTDExLjUsMTcuNDkgQzguNjksMTcuMTIgNi41LDE0Ljc0IDYuNSwxMS45OSBNMTcuNSwxMS45OSBDMTcuNSwxNC43NCAxNS4zMSwxNy4xMiAxMi41LDE3LjQ5IEwxMi41LDE5Ljc0IEMxNi40NywxOS4yNSAxOS41LDE1Ljg3IDE5LjUsMTEuOTkgQzE5LjUsOC4xMSAxNi40Nyw0LjczIDEyLjUsNC4yNSBMMTIuNSw2LjUgQzE1LjMxLDYuODcgMTcuNSw5LjI0IDE3LjUsMTEuOTkiIGZpbGw9IiNmZmZmZmYiLz48L3N2Zz4=")',
-                backgroundSize: "contain",
-                backgroundRepeat: "no-repeat",
-                animation: `float ${Math.random() * 15 + 15}s linear infinite`,
-                animationDelay: `${Math.random() * 10}s`,
-              }}
-            ></div>
-          ))}
-        </div>
-
-        {/* Content */}
-        <div className="relative z-20 flex items-center justify-center h-full px-6 text-center group">
-          <div className="max-w-4xl space-y-8 transform transition-all duration-700 group-hover:scale-[1.01]">
-            <h1 className="text-6xl md:text-8xl font-bold text-white leading-[0.9] tracking-tighter drop-shadow-2xl">
-              <span className="inline-block bg-gradient-to-r from-yellow-400 via-gray-300 to-yellow-400 bg-clip-text text-transparent">
-                DARK KNIGHT
-              </span>
-              <br />
-              <span className="text-white font-light tracking-widest">
-                COLLECTION
-              </span>
-            </h1>
-
-            <p className="text-xl md:text-2xl text-white/90 font-light max-w-2xl mx-auto tracking-wide drop-shadow-md">
-              Gear up with the official Batman merchandise - Where shadows meet
-              style
-            </p>
-          </div>
-        </div>
-
-        {/* Scrolling Indicator - Bat Symbol */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 animate-bounce-slow">
-          <div className="w-10 h-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEyLDIgQzYuNDgsMiAyLDYuNDggMiwxMiBDMiwxNy41MiA2LjQ4LDIyIDEyLDIyIEMxNy41MiwyMiAyMiwxNy41MiAyMiwxMiBDMjIsNi40OCAxNy41MiwyIDEyLDIgTTEyLDMuNDIgQzE2Ljg2LDMuNDIgMjAuNTgsNy4xNCAyMC41OCwxMiBDMjAuNTgsMTYuODYgMTYuODYsMjAuNTggMTIsMjAuNTggQzcuMTQsMjAuNTggMy40MiwxNi44NiAzLjQyLDEyIEMzLjQyLDcuMTQgNy4xNCwzLjQyIDEyLDMuNDIgTTYuNSwxMS45OSBDNi41LDkuMjQgOC42OSw2Ljg3IDExLjUsNi41IEwxMS41LDQuMjUgQzcuNTMsNC43MyA0LjUsOC4xMSA0LjUsMTEuOTkgQzQuNSwxNS44NyA3LjUzLDE5LjI1IDExLjUsMTkuNzQgTDExLjUsMTcuNDkgQzguNjksMTcuMTIgNi41LDE0Ljc0IDYuNSwxMS45OSBNMTcuNSwxMS45OSBDMTcuNSwxNC43NCAxNS4zMSwxNy4xMiAxMi41LDE3LjQ5IEwxMi41LDE5Ljc0IEMxNi40NywxOS4yNSAxOS41LDE1Ljg3IDE5LjUsMTEuOTkgQzE5LjUsOC4xMSAxNi40Nyw0LjczIDEyLjUsNC4yNSBMMTIuNSw2LjUgQzE1LjMxLDYuODcgMTcuNSw5LjI0IDE3LjUsMTEuOTkiIGZpbGw9IiNmZmZmZmYiLz48L3N2Zz4=')] bg-contain bg-no-repeat"></div>
-        </div>
-      </header>
-
+    
       {/* Main Content Area */}
       <div className="pb-16 w-full grid lg:grid-cols-5 grid-cols-1 min-h-screen relative">
         {/* Filter Sidebar - Desktop */}
@@ -127,14 +81,12 @@ function ProductPage() {
                     className="w-4 h-4 text-yellow-400"
                     fill="none"
                     stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
+                    viewBox="0 0 24 24">
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       strokeWidth="2"
-                      d="M19 9l-7 7-7-7"
-                    ></path>
+                      d="M19 9l-7 7-7-7"></path>
                   </svg>
                 </div>
               </div>
@@ -160,11 +112,16 @@ function ProductPage() {
             </div>
           </div>
 
-          {/* Product Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  gap-6 w-full relative">
-            {[...Array(12)].map((_, idx) => (
-              <ProductCard />
-            ))}
+          <div>
+            {isLoading ? (
+              <Loader2 />
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4  gap-6 w-full relative">
+                {items.map((item) => (
+                  <ProductCard item={item} />
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Pagination - Batman Theme */}
@@ -176,8 +133,7 @@ function ProductPage() {
                   className="h-5 w-5"
                   fill="none"
                   viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
+                  stroke="currentColor">
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -201,8 +157,7 @@ function ProductPage() {
                         page === 1
                           ? "bg-yellow-400 text-black font-bold shadow-lg"
                           : "text-gray-400 hover:text-yellow-400 hover:bg-black/50 border border-gray-800 hover:border-yellow-400/30"
-                      }`}
-                    >
+                      }`}>
                       {page}
                     </button>
                   )
@@ -216,8 +171,7 @@ function ProductPage() {
                   className="h-5 w-5"
                   fill="none"
                   viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
+                  stroke="currentColor">
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
