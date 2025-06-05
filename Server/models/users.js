@@ -50,12 +50,13 @@ const userSchema = new Schema(
         type:String,
         enum: ["customer", "seller"],
     },
-    shippingInfo: { // Address
+    shippingInfo: [{ // Address
       address: String,
       city: String,
       postalCode: {type: Number, minlength: 6, maxlength: 6},
+      state: String,
       country: String
-  },
+  }],
 }, { timestamps: true });
 
 module.exports = mongoose.model("User", userSchema);

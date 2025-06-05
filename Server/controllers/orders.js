@@ -6,9 +6,9 @@ const {ORDER_CONFIRM_TEMPLATE} = require("../config/emailTemplate.js");
 
 module.exports.createOrder = async (req, res) => {
     try {
-      const { userId, cartId, shippingInfo, totalAmount,paymentMethod } = req.body;
+      const { userId, cartId, totalAmount,paymentMethod } = req.body;
 
-      if (!userId || !cartId || !shippingInfo || !totalAmount || !paymentMethod) {
+      if (!userId || !cartId ||  !totalAmount || !paymentMethod) {
         return res.json({ success: false, message: 'Missing required fields' });
       }
 

@@ -7,6 +7,7 @@ const {
 const ExpressError = require("./utils/expressError.js");
 const JWT = require("jsonwebtoken");
 const Items = require("./models/itemModel.js");
+const Review = require("./models/review.js");
 
 // User Validation Middleware
 module.exports.validateUser = (req, res, next) => {
@@ -22,7 +23,8 @@ module.exports.validateUser = (req, res, next) => {
 
 // Item Validation Middleware
 module.exports.validateItem = (req, res, next) => {
-  let { error } = itemSchema.validate(req.body);
+  let { error } = itemSchema.validate(req.body,{ stripUnknown: true }); //{ stripUnknown: true }: When this option is passed to validate(), Joi will remove any keys from the validated object that are not defined in the schema. 
+  console.log(error);
   if (error) {
     // throw new ExpressError(400, result.error.details.map(el => el.message).join(", "));
     let errMsg = error.details.map((el) => el.message).join(",");
@@ -36,7 +38,7 @@ module.exports.validateItem = (req, res, next) => {
 module.exports.isOwner = async (req, res, next) =>{
   let {id} = req.params;
   const item = await Items.findById(id);
-  if(item.seller._id !== req.body.userId){
+  if(item.seller._id.toString() !== req.body.userId){
     return res.json({success: false, message: "You are not owner of this item/product"});
   }
   next();
@@ -45,7 +47,7 @@ module.exports.isOwner = async (req, res, next) =>{
 
 // Review Validation Middleware
 module.exports.validateReview = (req, res, next) => {
-  let { error } = reviewSchema.validate(req.body);
+  let { error } = reviewSchema.validate(req.body,{ stripUnknown: true });
   if (error) {
     // throw new ExpressError(400, result.error.details.map(el => el.message).join(", "));
     let errMsg = error.details.map((el) => el.message).join(",");
@@ -53,6 +55,17 @@ module.exports.validateReview = (req, res, next) => {
   } else {
     next();
   }
+};
+
+// Review ownew or not
+module.exports.isReviewAuthor = async (req, res, next) => {
+    let {reviewId} = req.params; 
+    let {userId} = req.body;
+    let review = await Review.findById(reviewId);
+    if(!review.author._id.equals(userId)) {
+        return res.json({success: false, message: "You are not author of this review!"})
+    }
+    next();
 };
 
 // User Authentication Middleware (means isLoggedIn or not)

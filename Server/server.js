@@ -14,7 +14,7 @@ const MongoStore = require("connect-mongo");
 const main = require("./config/mongodb.js");
 
 const corsOptions = {
-  origin: "https://localhost:5173", // Replace with your frontend URL
+  origin: "https://localhost:5173/", // Replace with your frontend URL
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true, // If your frontend needs to send cookies or authorization headers
 };
@@ -26,6 +26,7 @@ const userDataRoute = require("./routes/userData.js");
 const itemsRoute = require("./routes/items.js");
 const reviewRoute = require("./routes/review.js");
 const orderRoute = require("./routes/orders.js");
+const wishlistRoute = require("./routes/wishlist.js");
 
 // Connection with Database
 main();
@@ -65,10 +66,10 @@ app.use(session(sessionOptions));
 app.use("/user/auth", userRoute);
 app.use("/user", userDataRoute);
 app.use("/cart", cartRoute);
-app.use("/items/:id/reviews", reviewRoute);
-app.use("/shop", itemsRoute);
+app.use("/items", itemsRoute);
 app.use("/orders", orderRoute);
-
+app.use("/items/:id/reviews", reviewRoute); // here id is itemId
+app.use("/wishlist", wishlistRoute);
 
 // Error Handling Route
 app.all("/", (req, res, next) => {

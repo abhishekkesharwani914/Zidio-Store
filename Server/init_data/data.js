@@ -1661,7 +1661,7 @@ const initData = [
     }
 ]
 
-const dbUrl = process.env.MONGO_URL;
+const dbUrl = "mongodb+srv://abhishekkesharwani914:RZHtBKdpUWCIh85P@cluster0.veivohm.mongodb.net/?appName=Cluster0";
 const main = async () => {
     mongoose.connection.on("connected", () => console.log("Connected to DB")); // another way to show message in terminal
     await mongoose.connect(dbUrl);
@@ -1670,7 +1670,8 @@ const main = async () => {
 const initDB = async () => {
   try{
     await Items.deleteMany({});
-    await Items.insertMany(initData);
+    let transformedData = initData.map((data) => ({...data, stock: 50, seller:"6821eccff93189074035cde6"}))
+    await Items.insertMany(transformedData);
     console.log("Data inserted");
   }
   catch(err){

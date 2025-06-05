@@ -11,23 +11,24 @@ module.exports.userSchema = Joi.object({
 })
     
 module.exports.itemSchema = Joi.object({
-  title: Joi.string().required(),
-  price: Joi.number().required().min(0),
-  description: Joi.string().required(),
-  specifications: Joi.object({
-    fabric: Joi.string().allow("", null),
-    sleeveLength: Joi.string().allow("", null),
-    pattern: Joi.string().allow("", null),
-    fit: Joi.string().allow("", null),
-    neck: Joi.string().allow("", null),
-    origin: Joi.string().allow("", null),
-  }).required(),
-  discount: Joi.number().allow("", null).min(0).max(100),
-  category: Joi.string().required(),
-  sizes: Joi.array().items(Joi.string()).required(),
-  images: Joi.array().items(Joi.string()).required(),
-  stocks: Joi.number().required(),
-  seller: Joi.string().required()
+  product: Joi.object({
+    title: Joi.string().required(),
+    price: Joi.number().required().min(0),
+    description: Joi.string().required(),
+    specifications: Joi.object({
+      fabric: Joi.string().allow("", null),
+      sleeveLength: Joi.string().allow("", null),
+      pattern: Joi.string().allow("", null),
+      fit: Joi.string().allow("", null),
+      neck: Joi.string().allow("", null),
+      origin: Joi.string().allow("", null),
+    }).required(),
+    discount: Joi.number().allow("", null).min(0).max(100),
+    category: Joi.string().required(),
+    sizes: Joi.array().items(Joi.string()).required(),
+    images: Joi.array().items(Joi.string()).required(),
+    stock: Joi.number().required(),
+  })
 });
 
 module.exports.reviewSchema = Joi.object({
