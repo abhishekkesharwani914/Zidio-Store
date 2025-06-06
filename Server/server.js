@@ -14,7 +14,7 @@ const MongoStore = require("connect-mongo");
 const main = require("./config/mongodb.js");
 
 const corsOptions = {
-  origin: "https://localhost:5173/", // Replace with your frontend URL
+  origin: `${process.env.CLIENT_URL}`, // Replace with your frontend URL
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true, // If your frontend needs to send cookies or authorization headers
 };
@@ -27,10 +27,13 @@ const itemsRoute = require("./routes/items.js");
 const reviewRoute = require("./routes/review.js");
 const orderRoute = require("./routes/orders.js");
 const wishlistRoute = require("./routes/wishlist.js");
-const paymentRoute = require("./routes/payment.js");
+const webhookRoute = require("./routes/webhook.js");
 
 // Connection with Database
 main();
+
+// Webhook route must be *before* express.json() because it needs the raw body
+app.use('/webhook', webhookRoute);
 
 // Use of require module or npm packages
 app.use(cors(corsOptions)); // CORS is used to allow cross-origin requests and it is used to allow the frontend to access the backend API
@@ -71,7 +74,6 @@ app.use("/items", itemsRoute);
 app.use("/orders", orderRoute);
 app.use("/items/:id/reviews", reviewRoute); // here id is itemId
 app.use("/wishlist", wishlistRoute);
-app.use('/payment', paymentRoute); // Payment route
 
 // Error Handling Route
 app.all("/", (req, res, next) => {

@@ -8,4 +8,7 @@ router.route("/")
 .get(userAuth, wrapAsync(orderController.getOrders)) // Get all orders for the authenticated user
 .post(userAuth, wrapAsync(orderController.createOrder)); // Create a new order
 
+router.route("/create-checkout-session") //Create a Stripe Checkout Session
+.post(userAuth, wrapAsync(orderController.create_Card_Upi_order));
+
 module.exports = router;

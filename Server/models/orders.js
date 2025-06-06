@@ -19,10 +19,15 @@ const orderSchema = new Schema({
   paymentStatus: {
     type: String,
     enum: ['Pending', 'Paid', 'Failed','refunded'],
-    default: "Paid"
+    default: "Pending"
   },
   trackingId: {type: Number, default: Math.floor(Math.random()*10000000000)},
-  paymentId: String, // transaction ID from Stripe/PayPal
+  paymentDetails: {
+      paymentIntentId: { type: String }, // Stripe PaymentIntent ID
+      checkoutSessionId: { type: String }, // Stripe Checkout Session ID
+      methodType: { type: String }, // e.g., 'card', 'upi', 'emi'
+      // Add more details like card brand, last 4 digits if needed (from PaymentIntent)
+  }, // transaction ID from Stripe/PayPal
 },{timestamps:true});
 
 const Order = mongoose.model('Order', orderSchema);
