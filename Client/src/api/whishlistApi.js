@@ -1,21 +1,23 @@
 import { AsyncHandler } from "../Utils/AsyncHandler";
 import { axiosInstance } from "../Utils/AxiosInstance";
 
-export const getUserData = async (userId) => {
+export const wishlistItems = async (userId) => {
   const [response, error] = await AsyncHandler(() =>
-    axiosInstance.post(`/user/data`, { userId })
+    axiosInstance.post(`/wishlist/`, { userId })
   );
   return [response?.data, error];
 };
-export const updateUser = async (data) => {
+
+export const addWishlistItem = async (id, userId) => {
   const [response, error] = await AsyncHandler(() =>
-    axiosInstance.put(`/user/update`, data)
+    axiosInstance.post(`/wishlist/${id}`, { userId })
   );
   return [response?.data, error];
 };
-export const deleteUser = async (id) => {
+
+export const deleteWishlistItem = async (id, userId) => {
   const [response, error] = await AsyncHandler(() =>
-    axiosInstance.delete(`/user/delete`, { data: { id } })
+    axiosInstance.delete(`/wishlist/${id}`, { userId })
   );
   return [response?.data, error];
 };

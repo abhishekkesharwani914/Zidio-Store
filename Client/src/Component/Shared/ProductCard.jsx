@@ -1,9 +1,13 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer, Bounce } from "react-toastify";
+import { addWishlistItem } from "../../api/whishlistApi";
 
 function ProductCard({ item }) {
   const [isHovered, setIsHovered] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
+  const userId = useSelector((state) => state.auth.userData._id);
   const navigate = useNavigate();
   if (!item) return null;
 
@@ -12,10 +16,21 @@ function ProductCard({ item }) {
       ? Math.round(item.price * (1 - item.discount / 100))
       : item.price;
 
+  const wishlistHandler = async () => {
+    const [response, error] = await addWishlistItem(item._id, userId);
+    if (response) {
+      console.log(response);
+      toast.success("Added to wishlist!");
+      setIsLiked(!isLiked);
+    } else if (error) {
+      // Show error toast if there was an error
+      toast.error("Failed to add to wishlist.");
+    }
+  };
+  console.log(userId, item._id);
   return (
     <div
       onClick={() => {
-        // Navigate to product details page
         navigate(`/product-detail/${item._id}`);
       }}
       key={item._id}
@@ -47,8 +62,8 @@ function ProductCard({ item }) {
               : "text-gray-300 bg-white/30 hover:bg-white/50"
           }`}
           onClick={(e) => {
-            e.stopPropagation();
-            setIsLiked(!isLiked);
+            e.stopPropagation(); // Add this line
+            wishlistHandler();
           }}
           aria-label={isLiked ? "Remove from wishlist" : "Add to wishlist"}>
           <svg
@@ -63,7 +78,6 @@ function ProductCard({ item }) {
           </svg>
         </button>
       </div>
-
       {/* Product Info */}
       <div className="p-4 flex flex-col gap-1">
         <span className="text-xs font-semibold text-gray-400 uppercase tracking-wider">
@@ -81,14 +95,13 @@ function ProductCard({ item }) {
           )}
         </div>
       </div>
-
       {/* Add to Cart Overlay - Now with lower z-index than wishlist button */}
       <div
         className={`absolute inset-0 bg-black/70 flex items-center justify-center transition-opacity duration-300 z-10 ${
           isHovered ? "opacity-100" : "opacity-0"
         }`}>
         <button
-          className="bg-[#00AC7C] hover:bg-[#008a63] text-white font-semibold py-3 px-6 rounded-full uppercase text-sm tracking-wider transition-all transform hover:scale-105 flex items-center gap-2"
+          className="bg-yellow-400 hover:bg-yellow-300 text-white font-semibold py-3 px-6 rounded-full uppercase text-sm tracking-wider transition-all transform hover:scale-105 flex items-center gap-2"
           onClick={(e) => {
             e.stopPropagation();
             // Add to cart logic here
@@ -107,7 +120,20 @@ function ProductCard({ item }) {
           </svg>
           Add to Cart
         </button>
-      </div>
+      </div>{" "}
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+        transition={Bounce}
+      />
     </div>
   );
 }

@@ -23,11 +23,8 @@ const SignPage = () => {
     if (response.success) {
       dispatch(
         login({
-          userType: response.userType,
-          userData: {
-            email: `${response.email}`,
-            username: `${response.username}`,
-          },
+          userType: response.user.userType,
+          userData: response.user,
         })
       );
 

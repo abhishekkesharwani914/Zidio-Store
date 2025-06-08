@@ -8,7 +8,58 @@ const {
 } = require("../config/emailTemplate.js");
 
 // Register User
-module.exports.register = async (req, res) => {};
+module.exports.register = async (req, res) => {
+  const { userName, email, password, userType } = req.body;
+
+  if ((!userName || !email || !password, userType)) {
+    return res.json({ success: "false", message: "Missing Details" });
+  }
+
+  try {
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.json({ success: false, message: "User already exist" });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const user = new User({
+      userName,
+      email,
+      password: hashedPassword,
+      userType,
+    });
+
+    await user.save();
+
+    // Generate JWT Token
+    const token = JWT.sign({ id: user._id }, process.env.JWT_SECRET, {
+      expiresIn: "7d",
+    }); // token is generated and in JWT we have to pass id, secret, and expire time
+
+    // Store token in cookies
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "strict",
+      expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+    });
+
+    // Sending Welcome Email
+    const mailOptions = {
+      from: process.env.SENDER_MAIL,
+      to: email,
+      subject: "Welcome to Thread & Throne",
+      text: `Welcome to Thread & Throne Pvt Ltd. Your account has been created with email id: ${email}`,
+    };
+
+    await transporter.sendMail(mailOptions);
+
+    res.json({ success: true });
+  } catch (err) {
+    res.json({ success: "false", message: err.message });
+  }
+};
 
 // Login User
 module.exports.login = async (req, res) => {
@@ -50,8 +101,15 @@ module.exports.login = async (req, res) => {
 
     res.json({
       success: true,
-      usertype: user.userType,
-      message: `Welcome back! ${user.userName}`,
+      user: {
+        id: user._id,
+        email: user.email,
+        userType: user.userType,
+        name: user.name,
+        userName: user.userName,
+        isAccountVerified: user.isAccountVerified,
+        message: `Welcome back! ${user.userName}`,
+      },
     });
   } catch (err) {
     res.json({ sucess: false, message: err.message });
