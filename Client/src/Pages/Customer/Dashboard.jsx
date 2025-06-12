@@ -1,13 +1,36 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "../../index.js";
+import { getUserData } from "../../api/userDataApi.js";
+import { useDispatch, useSelector } from "react-redux";
+import { update } from "../../Store/authSlice.js";
+
+export const fetchData = async (userId) => {
+  const [response, error] = await getUserData(userId);
+  if (response) {
+    return response?.userData;
+  }
+};
 function UserAccount() {
   const navigate = useNavigate();
   const location = useLocation();
+  const userId = useSelector((state) => state.auth.userData.id);
+  const dispatch = useDispatch();
   const navigateHandler = () => {
     navigate("/account/profile");
   };
 
+  useEffect(() => {
+    const getUser = async () => {
+      const userData = await fetchData(userId);
+      if (userData) {
+        dispatch(update(userData));
+      }
+    };
+    getUser();
+  }, []);
+
+  const userData = useSelector((state) => state.auth.userData);
   return (
     <div className="lg:flex lg:min-h-screen text-white pt-[60px] ">
       <div className="shadow-lg overflow-hidden sticky lg:top-6 top-10 w-full h-fit lg:h-[calc(100vh-3rem)] lg:w-64 z-50">
@@ -71,8 +94,7 @@ function UserAccount() {
                       : "text-gray-400 hover:text-white hover:bg-gray-800"
                   }`
                 }>
-                <span
-                  className={`p-1 rounded-lg`}>
+                <span className={`p-1 rounded-lg`}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
@@ -114,17 +136,29 @@ function UserAccount() {
       <div className=" p-5 w-full ">
         {location.pathname === "/account" ? (
           <>
-            {/* Profile Card */}
+            /* Profile Card */
             <div className="bg-[#000000] rounded-xl shadow-md border border-gray-200 p-6 mb-6">
               <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                 <div className="flex items-center gap-4">
                   <div className="bg-yellow-400 text-black text-xl font-bold w-14 h-14 flex items-center justify-center rounded-full shadow-md">
-                    A
+                    {userData.picture ? (
+                      <img
+                        src={userData.picture}
+                        alt="Profile"
+                        className="w-full h-full object-cover rounded-full"
+                      />
+                    ) : userData.name ? (
+                      userData.name.charAt(0).toUpperCase()
+                    ) : (
+                      userData.userName.charAt(0).toUpperCase()
+                    )}
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold">Aryan Mishra</h3>
-                    <p className="text-sm ">aryan.official@mishra@gmail.com</p>
-                    <p className="text-sm ">+91 9027144850</p>
+                    <h3 className="text-lg font-semibold">
+                      {userData.userName}
+                    </h3>
+                    <p className="text-sm ">{userData.email}</p>
+                    <p className="text-sm ">{userData.phone}</p>
                   </div>
                 </div>
                 <div className="flex gap-5">
