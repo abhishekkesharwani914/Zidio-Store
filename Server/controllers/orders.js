@@ -32,7 +32,7 @@ module.exports.create_COD_Order = async (req, res) => {
         quantity: item.quantity,
       }));
 
-      const order = new Order({userId, items, totalAmount,paymentMethod});
+      const order = new Order({userId, items, totalAmount, paymentMethod});
       
       // Saving Order
       await order.save();
@@ -68,10 +68,10 @@ module.exports.create_Card_Upi_order = async(req, res) => {
           return res.status(401).json({ msg: 'User ID is required.' });
       }
       if (!totalAmount) {
-        return res.json({ success: false, message: 'Total amount is required' });
+        return res.status(401).json({ success: false, message: 'Total amount is required' });
       }
       if (!paymentMethod) {
-        return res.json({ success: false, message: 'Payment method is required' });
+        return res.status(401).json({ success: false, message: 'Payment method is required' });
       }
 
       const cart = await Cart.findById(cartId);
