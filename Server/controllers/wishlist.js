@@ -68,6 +68,7 @@ module.exports.removeFromWishlist = async (req, res) => {
         // Remove product from the wishlist
         wishlist.items.pull(id);
         await wishlist.save();
+        await wishlist.populate('items');
         res.json({success: true, message: "Removed from wishlist", wishlist: wishlist});
     } catch(err) {
         res.json({success: false, message: err.message});
